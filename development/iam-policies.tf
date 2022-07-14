@@ -1,18 +1,19 @@
-resource "aws_iam_user_policy" "ssm_engineering_policy_dev" {
-  name = "aws_ssm_engineering_policy"
+resource "aws_iam_group_policy" "my_developer_policy" {
+  name  = "my_developer_policy"
+  group = aws_iam_group.handsome-engineering-group.name
 
-  policy = <<EOF
-{
-    "Statement": [
-        {
-            "Action": [
-                "ec2:Describe*"
-            ],
-            "Effect": "Allow",
-            "Resource": "*"
-        }
-    ],
-    "Version": "2012-10-17"
-}
-EOF
+  # Terraform's "jsonencode" function converts a
+  # Terraform expression result to valid JSON syntax.
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = [
+          "ec2:Describe*",
+        ]
+        Effect   = "Allow"
+        Resource = "*"
+      },
+    ]
+  })
 }
