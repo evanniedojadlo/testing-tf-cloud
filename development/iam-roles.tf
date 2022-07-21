@@ -27,7 +27,7 @@ data "aws_iam_policy" "ReadOnlyAccess" {
 }
 
 resource "aws_iam_role_policy_attachment" "attach-managed-admin-policy" {
-  role       =  aws_iam_role.test-role.name
+  role       =  "${aws_iam_role.test-role.name}"
   policy_arn = "${data.aws_iam_policy.ReadOnlyAccess.arn}"
 }
 
