@@ -27,6 +27,6 @@ data "aws_iam_policy" "codedeploy_service_policy" {
 }
 
 resource "aws_iam_role_policy_attachment" "codedeploy_service_role_policy_attach" {
-   role       = "${aws_iam_role.some_test_role.name}"
+   role       = "${aws_iam_role.some-test-role.name}"
    policy_arn = "${data.aws_iam_policy.codedeploy_service_policy.arn}"
 }
