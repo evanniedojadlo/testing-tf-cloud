@@ -1,7 +1,7 @@
 
 
 
-resource "aws_iam_role" "role" {
+resource "aws_iam_role" "some-test-role" {
   name = "test-role"
 
   assume_role_policy = <<EOF
@@ -21,13 +21,12 @@ resource "aws_iam_role" "role" {
 EOF
 }
 
-# Terraform data resource for managed policies
-# data "aws_iam_policy" "ReadOnlyAccess" {
-#     arn = "arn:aws:iam::aws:policy/AdministratorAccess"
-# }
+# Use Terraform data source for managed roles
+data "aws_iam_policy" "codedeploy_service_policy" {
+  arn = "arn:aws:iam::aws:policy/AdministratorAccess"
+}
 
-# resource "aws_iam_role_policy_attachment" "attach-managed-admin-policy" {
-#   role       =  "${aws_iam_role.role.name}"
-#   policy_arn = "${data.aws_iam_policy.ReadOnlyAccess.arn}"
-# }
-
+resource "aws_iam_role_policy_attachment" "codedeploy_service_role_policy_attach" {
+   role       = "${aws_iam_role.some_test_role.name}"
+   policy_arn = "${data.aws_iam_policy.codedeploy_service_policy.arn}"
+}
