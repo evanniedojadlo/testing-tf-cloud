@@ -22,12 +22,12 @@ EOF
 }
 
 # Terraform data resource for managed policies
-data "aws_iam_policy" "ReadOnlyAccess" {
-    arn = "arn:aws:iam::aws:policy/AdministratorAccess"
-}
+# data "aws_iam_policy" "ReadOnlyAccess" {
+#     arn = "arn:aws:iam::aws:policy/AdministratorAccess"
+# }
 
-resource "aws_iam_role_policy_attachment" "attach-managed-admin-policy" {
-  role       =  "${aws_iam_role.test-role.name}"
-  policy_arn = "${data.aws_iam_policy.ReadOnlyAccess.arn}"
-}
+# resource "aws_iam_role_policy_attachment" "attach-managed-admin-policy" {
+#   role       =  "${aws_iam_role.role.name}"
+#   policy_arn = "${data.aws_iam_policy.ReadOnlyAccess.arn}"
+# }
 
