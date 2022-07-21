@@ -7,13 +7,3 @@ resource "aws_iam_role" "role" {
   }
 
 }
-
-resource "aws_iam_role" "role2" {
-  name = "test-role2"
-  assume_role_policy = "arn:aws:iam::662799521275:policy/example2"
-
-  tags = {
-    managed-by = "terraform"
-  }
-
-}
