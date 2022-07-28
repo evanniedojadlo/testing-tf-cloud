@@ -25,13 +25,20 @@ EOF
 }
 
 # Use Terraform data source for managed roles
-data "aws_iam_policy" "codedeploy_service_policy" {
-  arn = "arn:aws:iam::aws:policy/AdministratorAccess"
-}
+
 
 resource "aws_iam_role_policy_attachment" "codedeploy_service_role_policy_attach" {
    role       = "${aws_iam_role.some-test-role.name}"
    policy_arn = "${data.aws_iam_policy.codedeploy_service_policy.arn}"
+}
+
+resource "aws_iam_role_policy_attachment" "test-attach" {
+  role       = aws_iam_role.role.name
+  policy_arn = aws_iam_policy.policy.arn
+}
+
+data "aws_iam_policy" "codedeploy_service_policy" {
+  arn = "arn:aws:iam::aws:policy/AdministratorAccess"
 }
 
 
