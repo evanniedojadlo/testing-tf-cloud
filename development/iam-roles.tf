@@ -33,7 +33,7 @@ resource "aws_iam_role_policy_attachment" "codedeploy_service_role_policy_attach
 }
 
 resource "aws_iam_role_policy_attachment" "test-attach" {
-  role       = aws_iam_role.role.name
+  role       = aws_iam_role.some-test-role.name
   policy_arn = aws_iam_policy.policy.arn
 }
 
